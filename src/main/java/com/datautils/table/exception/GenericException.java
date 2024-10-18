@@ -75,6 +75,43 @@ public class GenericException extends RuntimeException {
 		private String message;
 		private String stackTrace;
 		private String debugMessage;
+
+
+		public String getExceptionId() {
+			return exceptionId;
+		}
+
+		public GenericExceptionData setExceptionId(String exceptionId) {
+			this.exceptionId = exceptionId;
+			return this;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public GenericExceptionData setMessage(String message) {
+			this.message = message;
+			return this;
+		}
+
+		public String getStackTrace() {
+			return stackTrace;
+		}
+
+		public GenericExceptionData setStackTrace(String stackTrace) {
+			this.stackTrace = stackTrace;
+			return this;
+		}
+
+		public String getDebugMessage() {
+			return debugMessage;
+		}
+
+		public GenericExceptionData setDebugMessage(String debugMessage) {
+			this.debugMessage = debugMessage;
+			return this;
+		}
 	}
 }
 
