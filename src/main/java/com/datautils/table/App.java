@@ -115,46 +115,46 @@ public class App {
 
 		return cellValue;
 	}
-
-	public static void readExcelFilePoi(String filePath) {
-		try (FileInputStream fis = new FileInputStream(filePath);
-		     Workbook workbook = getWorkbook(fis, filePath)) {
-
-			Sheet sheet = workbook.getSheetAt(0);
-			for (Row row : sheet) {
-				for (Cell cell : row) {
-					switch (cell.getCellType()) {
-						case STRING:
-							System.out.print(cell.getStringCellValue() + "\t");
-							break;
-						case NUMERIC:
-							System.out.print(cell.getNumericCellValue() + "\t");
-							break;
-						case BOOLEAN:
-							System.out.print(cell.getBooleanCellValue() + "\t");
-							break;
-						case FORMULA:
-							System.out.print(cell.getCellFormula() + "\t");
-							break;
-						default:
-							System.out.print(" \t");
-							break;
-					}
-				}
-				System.out.println();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static Workbook getWorkbook(FileInputStream fis, String filePath) throws IOException {
-		if (filePath.endsWith("xlsx")) {
-			return new XSSFWorkbook(fis); // For .xlsx files
-		} else if (filePath.endsWith("xls")) {
-			return new HSSFWorkbook(fis); // For .xls files
-		} else {
-			throw new IllegalArgumentException("The specified file is not an Excel file.");
-		}
-	}
+//
+//	public static void readExcelFilePoi(String filePath) {
+//		try (FileInputStream fis = new FileInputStream(filePath);
+//		     Workbook workbook = getWorkbook(fis, filePath)) {
+//
+//			Sheet sheet = workbook.getSheetAt(0);
+//			for (Row row : sheet) {
+//				for (Cell cell : row) {
+//					switch (cell.getCellType()) {
+//						case STRING:
+//							System.out.print(cell.getStringCellValue() + "\t");
+//							break;
+//						case NUMERIC:
+//							System.out.print(cell.getNumericCellValue() + "\t");
+//							break;
+//						case BOOLEAN:
+//							System.out.print(cell.getBooleanCellValue() + "\t");
+//							break;
+//						case FORMULA:
+//							System.out.print(cell.getCellFormula() + "\t");
+//							break;
+//						default:
+//							System.out.print(" \t");
+//							break;
+//					}
+//				}
+//				System.out.println();
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	private static Workbook getWorkbook(FileInputStream fis, String filePath) throws IOException {
+//		if (filePath.endsWith("xlsx")) {
+//			return new XSSFWorkbook(fis); // For .xlsx files
+//		} else if (filePath.endsWith("xls")) {
+//			return new HSSFWorkbook(fis); // For .xls files
+//		} else {
+//			throw new IllegalArgumentException("The specified file is not an Excel file.");
+//		}
+//	}
 }

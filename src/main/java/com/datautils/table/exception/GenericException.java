@@ -76,7 +76,6 @@ public class GenericException extends RuntimeException {
 		private String stackTrace;
 		private String debugMessage;
 
-
 		public String getExceptionId() {
 			return exceptionId;
 		}
