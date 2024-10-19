@@ -1,6 +1,6 @@
 package com.datautils.table.core;
 
-public interface Reader<RS> {
+public interface Reader<R> {
 
 	class ReaderError extends Exception {
 		public ReaderError(String message) {
@@ -14,7 +14,7 @@ public interface Reader<RS> {
 	 * @param reader the input source for reading data
 	 * @throws ReaderError if an error occurs while creating the reader
 	 */
-	void newInstance(RS reader) throws ReaderError;
+	void newInstance(R reader) throws ReaderError;
 
 	/**
 	 * Set the header row (i.e., the first row to be read).
