@@ -1,7 +1,5 @@
 package com.datautils.table;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -12,12 +10,6 @@ import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -29,7 +21,7 @@ public class App {
 		String file = ("");
 
 		long startTimePoi = System.nanoTime();
-		readExcelFilePoi(file);
+//		readExcelFilePoi(file);
 		long endTimePoi = System.nanoTime();
 		long durationPoi = endTimePoi - startTimePoi;
 		System.out.println("Apache POI Duration: " + durationPoi / 1_000_000 + " ms");
