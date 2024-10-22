@@ -1,9 +1,13 @@
 package com.datautils.table.function;
 
+import java.io.Serial;
 import java.util.Objects;
 import java.util.function.Function;
 
 public class Tuple4<T1, T2, T3, T4> extends Tuple3<T1, T2, T3> {
+
+	@Serial
+	private static final long serialVersionUID = 7438063693758398864L;
 
 	final T4 t4;
 
@@ -16,14 +20,17 @@ public class Tuple4<T1, T2, T3, T4> extends Tuple3<T1, T2, T3> {
 		return t4;
 	}
 
+	@Override
 	public <R> Tuple4<R, T2, T3, T4> mapT1(Function<T1, R> mapper) {
 		return new Tuple4<>(mapper.apply(t1), t2, t3, t4);
 	}
 
+	@Override
 	public <R> Tuple4<T1, R, T3, T4> mapT2(Function<T2, R> mapper) {
 		return new Tuple4<>(t1, mapper.apply(t2), t3, t4);
 	}
 
+	@Override
 	public <R> Tuple4<T1, T2, R, T4> mapT3(Function<T3, R> mapper) {
 		return new Tuple4<>(t1, t2, mapper.apply(t3), t4);
 	}
@@ -56,7 +63,7 @@ public class Tuple4<T1, T2, T3, T4> extends Tuple3<T1, T2, T3> {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof @SuppressWarnings("rawtypes")Tuple4 tuple4)) return false;
+		if (!(o instanceof Tuple4<?, ?, ?, ?> tuple4)) return false;
 		if (!super.equals(o)) return false;
 
 		return t4.equals(tuple4.t4);

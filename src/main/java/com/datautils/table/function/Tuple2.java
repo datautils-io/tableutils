@@ -1,5 +1,6 @@
 package com.datautils.table.function;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
@@ -8,6 +9,9 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public class Tuple2<T1, T2> implements Iterable<Object>, Serializable {
+
+	@Serial
+	private static final long serialVersionUID = 2717732556038214217L;
 
 	final T1 t1;
 	final T2 t2;

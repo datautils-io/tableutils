@@ -5,6 +5,8 @@ import java.util.function.Function;
 @SuppressWarnings({"rawtypes"})
 public abstract class Tuples implements Function {
 
+	static final Tuples empty = new Tuples() {};
+
 	public static Tuple2 fromArray(Object[] list) {
 
 		if (list == null || list.length < 2) {
@@ -61,6 +63,10 @@ public abstract class Tuples implements Function {
 		return empty;
 	}
 
+	public static <T1, T2, T3, T4, R> Function<Object[], R> fn4(final Function<Tuple4<T1, T2, T3, T4>, R> delegate) {
+		return objects -> delegate.apply(Tuples.<T1, T2, T3, T4>fn4().apply(objects));
+	}
+
 	@Override
 	public Tuple2 apply(Object o) {
 		return fromArray((Object[]) o);
@@ -79,10 +85,6 @@ public abstract class Tuples implements Function {
 		}
 		return sb;
 	}
-
-
-	static final Tuples empty = new Tuples() {
-	};
 
 	Tuples() {
 	}
