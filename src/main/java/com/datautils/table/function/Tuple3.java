@@ -47,4 +47,20 @@ public class Tuple3<T1, T2, T3> extends Tuple2<T1, T2> {
 	public int size() {
 		return 3;
 	}
+
+	@Override
+	public boolean equals( Object o) {
+		if (this == o) return true;
+		if (!(o instanceof @SuppressWarnings("rawtypes")Tuple3 tuple3)) return false;
+		if (!super.equals(o)) return false;
+
+		return t3.equals(tuple3.t3);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + t3.hashCode();
+		return result;
+	}
 }

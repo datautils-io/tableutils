@@ -1,10 +1,9 @@
 package com.datautils.table.function;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -43,20 +42,60 @@ public class Tuple2<T1, T2> implements Iterable<Object>, Serializable {
 	}
 
 	public List<Object> toList() {
-		return Arrays.asList(toArray());
+		return List.of(t1, t2);
 	}
 
 	public Object[] toArray() {
 		return new Object[]{t1, t2};
 	}
 
-	@Override
-	public Iterator<Object> iterator() {
-		return Collections.unmodifiableList(toList()).iterator();
-	}
-
 	public int size() {
 		return 2;
+	}
+
+	@Override
+	public Iterator<Object> iterator() {
+		return new Iterator<>() {
+			private int index = 0;
+
+			@Override
+			public boolean hasNext() {
+				return index < size();
+			}
+
+			@Override
+			public Object next() {
+				if (!hasNext()) {
+					throw new NoSuchElementException();
+				}
+				return get(index++);
+			}
+		};
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		Tuple2<?, ?> tuple2 = (Tuple2<?, ?>) o;
+
+		return t1.equals(tuple2.t1) && t2.equals(tuple2.t2);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = size();
+		result = 31 * result + t1.hashCode();
+		result = 31 * result + t2.hashCode();
+		return result;
+	}
+
+	@Override
+	public final String toString() {
+		return Tuples.tupleStringRepresentation(toArray()).insert(0, '[').append(']').toString();
 	}
 
 }
