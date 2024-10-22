@@ -10,7 +10,7 @@ public abstract class Tuples implements Function {
 	public static Tuple2 fromArray(Object[] list) {
 
 		if (list == null || list.length < 2) {
-			throw new IllegalArgumentException("null or too small array, need between 2 and 8 values");
+			throw new IllegalArgumentException("Array is null. Need 2-4 elements.");
 		}
 
 		return switch (list.length) {
@@ -18,7 +18,7 @@ public abstract class Tuples implements Function {
 			case 3 -> of(list[0], list[1], list[2]);
 			case 4 -> of(list[0], list[1], list[2], list[3]);
 			default ->
-					throw new IllegalArgumentException("too many arguments (" + list.length + "), need between 2 and 8 values");
+					throw new IllegalArgumentException("Unexpected array length: " + list.length);
 		};
 	}
 
