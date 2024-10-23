@@ -5,20 +5,21 @@ import java.util.function.Function;
 @SuppressWarnings({"rawtypes"})
 public abstract class Tuples implements Function {
 
-	static final Tuples empty = new Tuples() {};
+	static final Tuples empty = new Tuples() {
+	};
 
 	public static Tuple2 fromArray(Object[] list) {
 
 		if (list == null || list.length < 2) {
-			throw new IllegalArgumentException("Array is null. Need 2-4 elements.");
+			throw new IllegalArgumentException("Array is null. Need 2-5 elements.");
 		}
 
 		return switch (list.length) {
 			case 2 -> of(list[0], list[1]);
 			case 3 -> of(list[0], list[1], list[2]);
 			case 4 -> of(list[0], list[1], list[2], list[3]);
-			default ->
-					throw new IllegalArgumentException("Unexpected array length: " + list.length);
+			case 5 -> of(list[0], list[1], list[2], list[3], list[4]);
+			default -> throw new IllegalArgumentException("Unexpected array length: " + list.length);
 		};
 	}
 
@@ -34,6 +35,10 @@ public abstract class Tuples implements Function {
 		return new Tuple4<>(t1, t2, t3, t4);
 	}
 
+	public static <T1, T2, T3, T4, T5> Tuple5<T1, T2, T3, T4, T5> of(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5) {
+		return new Tuple5<>(t1, t2, t3, t4, t5);
+	}
+
 	@SuppressWarnings("unchecked")
 	public static Function<Object[], Tuple2> fnAny() {
 		return empty;
@@ -47,7 +52,6 @@ public abstract class Tuples implements Function {
 	public static <T1, T2> Function<Object[], Tuple2<T1, T2>> fn2() {
 		return empty;
 	}
-
 
 	@SuppressWarnings("unchecked")
 	public static <T1, T2, T3> Function<Object[], Tuple3<T1, T2, T3>> fn3() {
@@ -65,6 +69,15 @@ public abstract class Tuples implements Function {
 
 	public static <T1, T2, T3, T4, R> Function<Object[], R> fn4(final Function<Tuple4<T1, T2, T3, T4>, R> delegate) {
 		return objects -> delegate.apply(Tuples.<T1, T2, T3, T4>fn4().apply(objects));
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T1, T2, T3, T4, T5> Function<Object[], Tuple5<T1, T2, T3, T4, T5>> fn5() {
+		return empty;
+	}
+
+	public static <T1, T2, T3, T4, T5, R> Function<Object[], R> fn5(final Function<Tuple5<T1, T2, T3, T4, T5>, R> delegate) {
+		return objects -> delegate.apply(Tuples.<T1, T2, T3, T4, T5>fn5().apply(objects));
 	}
 
 	@Override

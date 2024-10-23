@@ -67,7 +67,6 @@ public class Tuple4<T1, T2, T3, T4> extends Tuple3<T1, T2, T3> {
 		if (!super.equals(o)) return false;
 
 		return t4.equals(tuple4.t4);
-
 	}
 
 	@Override
