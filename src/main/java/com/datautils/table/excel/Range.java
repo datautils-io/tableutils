@@ -12,16 +12,15 @@ public class Range<T> {
 	private final Tuple2<Integer, Integer> start;
 	private final Tuple2<Integer, Integer> end;
 	private final List<T> inner;
+	private final int width;
+	private final int height;
 
 	public Range(Tuple2<Integer, Integer> start, Tuple2<Integer, Integer> end) {
 		this.start = start;
 		this.end = end;
-		int width = (end.getT1() - start.getT1() + 1);
-		int height = (end.getT2() - start.getT2() + 1);
+		this.width = end.getT1() - start.getT1() + 1;
+		this.height = end.getT2() - start.getT2() + 1;
 		this.inner = new ArrayList<>(width * height);
-		for (int i = 0; i < width * height; i++) {
-			this.inner.add(null);
-		}
 	}
 
 	public static <T> Range<T> empty() {
@@ -37,33 +36,30 @@ public class Range<T> {
 	}
 
 	public int getWidth() {
-		return isEmpty() ? 0 : (end.getT1() - start.getT1() + 1);
+		return width;
 	}
 
 	public int getHeight() {
-		return isEmpty() ? 0 : (end.getT2() - start.getT2() + 1);
+		return height;
 	}
 
 	public boolean isEmpty() {
-		return inner.isEmpty();
+		return width <= 0 || height <= 0;
 	}
 
 	public void setValue(Tuple2<Integer, Integer> absolutePosition, T value) {
 		int col = absolutePosition.getT1() - start.getT1();
 		int row = absolutePosition.getT2() - start.getT2();
-		int index = row * getWidth() + col;
-		inner.set(index, value);
+		inner.set(row * width + col, value);
 	}
 
 	public Optional<T> getValue(Tuple2<Integer, Integer> absolutePosition) {
-		if (absolutePosition.getT2() < start.getT2() || absolutePosition.getT2() > end.getT2() ||
-				absolutePosition.getT1() < start.getT1() || absolutePosition.getT1() > end.getT1()) {
+		if (isOutOfBounds(absolutePosition)) {
 			return Optional.empty();
 		}
 		int row = absolutePosition.getT2() - start.getT2();
 		int col = absolutePosition.getT1() - start.getT1();
-		int index = row * getWidth() + col;
-		return Optional.ofNullable(inner.get(index));
+		return Optional.ofNullable(inner.get(row * width + col));
 	}
 
 	public List<T> getRow(int rowIndex) {
@@ -72,6 +68,12 @@ public class Range<T> {
 	}
 
 	public Tuple2<Integer, Integer> getSize() {
-		return Tuples.of(getHeight(), getWidth());
+		return Tuples.of(height, width);
 	}
+
+	private boolean isOutOfBounds(Tuple2<Integer, Integer> position) {
+		return position.getT2() < start.getT2() || position.getT2() > end.getT2() ||
+				position.getT1() < start.getT1() || position.getT1() > end.getT1();
+	}
+
 }
