@@ -1,37 +1,33 @@
 package com.datautils.table.excel.reader;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
+import com.datautils.table.excel.Metadata;
+import com.datautils.table.excel.Range;
+import com.datautils.table.excel.Sheet;
 import com.datautils.table.excel.enums.Data;
 import com.datautils.table.excel.enums.HeaderRow;
 
 public interface Reader<R> {
 
-	// Error specific to file type
-	class ReaderError extends Exception {
-		public ReaderError(String message) {
-			super(message);
-		}
-	}
+	Reader<R> withHeaderRow(HeaderRow headerRow);
 
-	// Creates a new instance of the reader
-	void initialize(R reader) throws ReaderError;
+	Metadata getMetadata();
 
-	// Set header row (i.e., first row to be read)
-	void withHeaderRow(HeaderRow headerRow);
+	Range<Data> getWorksheetRange(String name) throws IOException;
 
+	List<WorksheetData> getWorksheets() throws IOException;
 
-	// Read worksheet data in corresponding worksheet path
-	Range<Data> worksheetRange(String name) throws ReaderError;
+	Range<String> getWorksheetFormula(String name) throws IOException;
 
-	// Fetch all worksheet data & paths
-	Iterable<Range<Data>> worksheets() throws ReaderError;
+	List<String> getSheetNames();
 
-	// Get all sheet names of this workbook, in workbook order
-	Iterable<String> sheetNames();
+	List<Sheet> getSheetsMetadata();
 
-	// Get the nth worksheet
-	Range<Data> worksheetRangeAt(int n) throws ReaderError;
+	List<DefinedName> getDefinedNames();
 
-	// Get all defined names (Ranges names etc)
-	Iterable<String> definedNames();
+	Optional<Range<Data>> getWorksheetRangeAt(int n) throws IOException;
 
 }
