@@ -1,6 +1,6 @@
 package com.datautils.table.excel.enums;
 
-public enum Sheet {
+public enum Sheets {
 
 	XLS,
 	XLSX,
