@@ -62,4 +62,9 @@ public class ExcelDateTime {
 		Duration excelDuration = Duration.ofMillis(Math.round(ms));
 		return Optional.of(excelEpoch.plus(excelDuration));
 	}
+
+	@Override
+	public String toString() {
+		return "ExcelDateTime [value=" + value + ", dateTimeType=" + dateTimeType + "]";
+	}
 }
