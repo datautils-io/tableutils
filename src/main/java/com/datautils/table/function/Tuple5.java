@@ -12,7 +12,7 @@ public class Tuple5<T1, T2, T3, T4, T5> extends Tuple4<T1, T2, T3, T4> {
 		this.t5 = Objects.requireNonNull(t5, "t5");
 	}
 
-	public T5 getT5() {
+	public T5 t5() {
 		return t5;
 	}
 
