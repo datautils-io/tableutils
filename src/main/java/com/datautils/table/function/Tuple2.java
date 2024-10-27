@@ -16,16 +16,16 @@ public class Tuple2<T1, T2> implements Iterable<Object>, Serializable {
 	final T1 t1;
 	final T2 t2;
 
-	Tuple2(T1 t1, T2 t2) {
+	public Tuple2(T1 t1, T2 t2) {
 		this.t1 = Objects.requireNonNull(t1, "t1");
 		this.t2 = Objects.requireNonNull(t2, "t2");
 	}
 
-	public T1 getT1() {
+	public T1 t1() {
 		return t1;
 	}
 
-	public T2 getT2() {
+	public T2 t2() {
 		return t2;
 	}
 

@@ -16,7 +16,7 @@ public class Tuple4<T1, T2, T3, T4> extends Tuple3<T1, T2, T3> {
 		this.t4 = Objects.requireNonNull(t4, "t4");
 	}
 
-	public T4 getT4() {
+	public T4 t4() {
 		return t4;
 	}
 

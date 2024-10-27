@@ -2,8 +2,8 @@ package com.datautils.table.excel.enums;
 
 public enum ExcelDateTimeType {
 
-	DATE_TIME("DateTime"),
-	TIME_DELTA("TimeDelta");
+	DATETIME("DateTime"),
+	TIMEDELTA("TimeDelta");
 
 	private final String description;
 

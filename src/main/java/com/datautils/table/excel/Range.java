@@ -18,8 +18,8 @@ public class Range<T> {
 	public Range(Tuple2<Integer, Integer> start, Tuple2<Integer, Integer> end) {
 		this.start = start;
 		this.end = end;
-		this.width = end.getT1() - start.getT1() + 1;
-		this.height = end.getT2() - start.getT2() + 1;
+		this.width = end.t1() - start.t1() + 1;
+		this.height = end.t2() - start.t2() + 1;
 		this.inner = new ArrayList<>(width * height);
 	}
 
@@ -48,8 +48,8 @@ public class Range<T> {
 	}
 
 	public void setValue(Tuple2<Integer, Integer> absolutePosition, T value) {
-		int col = absolutePosition.getT1() - start.getT1();
-		int row = absolutePosition.getT2() - start.getT2();
+		int col = absolutePosition.t1() - start.t1();
+		int row = absolutePosition.t2() - start.t2();
 		inner.set(row * width + col, value);
 	}
 
@@ -57,8 +57,8 @@ public class Range<T> {
 		if (isOutOfBounds(absolutePosition)) {
 			return Optional.empty();
 		}
-		int row = absolutePosition.getT2() - start.getT2();
-		int col = absolutePosition.getT1() - start.getT1();
+		int row = absolutePosition.t2() - start.t2();
+		int col = absolutePosition.t1() - start.t1();
 		return Optional.ofNullable(inner.get(row * width + col));
 	}
 
@@ -72,8 +72,8 @@ public class Range<T> {
 	}
 
 	private boolean isOutOfBounds(Tuple2<Integer, Integer> position) {
-		return position.getT2() < start.getT2() || position.getT2() > end.getT2() ||
-				position.getT1() < start.getT1() || position.getT1() > end.getT1();
+		return position.t2() < start.t2() || position.t2() > end.t2() ||
+				position.t1() < start.t1() || position.t1() > end.t1();
 	}
 
 }
