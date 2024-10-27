@@ -1,12 +1,10 @@
 package com.datautils.table.excel.cell;
 
-import com.datautils.table.excel.enums.DataRef;
+public interface CellType<T extends CellType<T>> extends Cloneable {
 
-public interface CellType {
+	T getDefault();
 
-	Object getValue();
+	T copy();
 
-	void setValue(Object value);
-
-	DataRef getDataRef();
+	boolean equals(Object obj);
 }
