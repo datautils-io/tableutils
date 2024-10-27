@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.datautils.table.excel.cell.CellType;
 import com.datautils.table.function.Tuple2;
 import com.datautils.table.function.Tuples;
 
-public class Range<T> {
+public class Range<T extends CellType<T>> {
 
 	private final Tuple2<Integer, Integer> start;
 	private final Tuple2<Integer, Integer> end;
@@ -23,7 +24,7 @@ public class Range<T> {
 		this.inner = new ArrayList<>(width * height);
 	}
 
-	public static <T> Range<T> empty() {
+	public static <T extends CellType<T>> Range<T> empty() {
 		return new Range<>(Tuples.of(0, 0), Tuples.of(0, 0));
 	}
 
