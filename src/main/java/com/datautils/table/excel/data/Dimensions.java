@@ -12,4 +12,12 @@ public class Dimensions {
 		this.start = start;
 		this.end = end;
 	}
+
+	public boolean contains(Integer row, Integer col) {
+		return row >= start.t1() && row <= end.t1() && col >= start.t2() && col <= end.t2();
+	}
+
+	public long length() {
+		return (end.t1() - start.t1() + 1L) * (end.t2() - start.t2() + 1L);
+	}
 }
