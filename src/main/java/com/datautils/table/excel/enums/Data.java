@@ -1,6 +1,8 @@
 package com.datautils.table.excel.enums;
 
-public enum Data {
+import com.datautils.table.excel.cell.CellType;
+
+public enum Data implements CellType<Data> {
 
 	INT("Integer"),
 	FLOAT("Float"),
@@ -20,5 +22,15 @@ public enum Data {
 
 	public String getDescription() {
 		return description;
+	}
+
+	@Override
+	public Data getDefault() {
+		return null;
+	}
+
+	@Override
+	public Data copy() {
+		return null;
 	}
 }

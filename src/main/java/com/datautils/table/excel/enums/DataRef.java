@@ -1,6 +1,8 @@
 package com.datautils.table.excel.enums;
 
-public enum DataRef {
+import com.datautils.table.excel.cell.CellType;
+
+public enum DataRef implements CellType<DataRef> {
 
 	INT("Integer"),
 	FLOAT("Float"),
@@ -21,5 +23,15 @@ public enum DataRef {
 
 	public String getDescription() {
 		return description;
+	}
+
+	@Override
+	public DataRef getDefault() {
+		return null;
+	}
+
+	@Override
+	public DataRef copy() {
+		return null;
 	}
 }
