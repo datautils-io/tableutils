@@ -8,7 +8,7 @@ import java.util.Optional;
 import com.datautils.table.excel.Metadata;
 import com.datautils.table.excel.Range;
 import com.datautils.table.excel.Sheet;
-import com.datautils.table.excel.cell.Data;
+import com.datautils.table.excel.enums.Data;
 import com.datautils.table.excel.cell.StringCell;
 import com.datautils.table.excel.enums.HeaderRow;
 import com.datautils.table.function.Tuple2;
