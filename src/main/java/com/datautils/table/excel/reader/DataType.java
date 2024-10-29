@@ -1,12 +1,15 @@
 package com.datautils.table.excel.reader;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import com.datautils.table.excel.data.ExcelDateTime;
 import com.datautils.table.excel.enums.CellErrorType;
 
 public interface DataType {
-
 	boolean isEmpty();
 
 	boolean isInt();
@@ -19,17 +22,11 @@ public interface DataType {
 
 	boolean isError();
 
-	default boolean isDurationIso() {
-		return false;
-	}
+	boolean isDurationIso();
 
-	default boolean isDateTime() {
-		return false;
-	}
+	boolean isDateTime();
 
-	default boolean isDateTimeIso() {
-		return false;
-	}
+	boolean isDateTimeIso();
 
 	Optional<Long> getInt();
 
@@ -39,18 +36,25 @@ public interface DataType {
 
 	Optional<String> getString();
 
+	Optional<ExcelDateTime> getDateTime();
+
+	Optional<String> getDateTimeIso();
+
+	Optional<String> getDurationIso();
+
 	Optional<CellErrorType> getError();
 
-	default Optional<ExcelDateTime> getDateTime() {
-		return Optional.empty();
-	}
+	Optional<String> asString();
 
-	default Optional<String> getDateTimeIso() {
-		return Optional.empty();
-	}
+	Optional<Long> asLong();
 
-	default Optional<String> getDurationIso() {
-		return Optional.empty();
-	}
+	Optional<Double> asDouble();
 
+	Optional<LocalDate> asDate();
+
+	Optional<LocalTime> asTime();
+
+	Optional<Duration> asDuration();
+
+	Optional<LocalDateTime> asDateTime();
 }

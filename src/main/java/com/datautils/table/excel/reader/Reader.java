@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.datautils.table.excel.Metadata;
-import com.datautils.table.excel.Range;
+import com.datautils.table.excel.cell.Range;
 import com.datautils.table.excel.Sheet;
 import com.datautils.table.excel.enums.Data;
 import com.datautils.table.excel.cell.StringCell;
@@ -36,7 +36,7 @@ public interface Reader<R> {
 	}
 
 	default Map<String, String> getDefinedNames() {
-		return getMetadata().names();
+		return getMetadata().getNames();
 	}
 
 	default Optional<Range<Data>> getWorksheetRangeAt(int n) throws IOException {

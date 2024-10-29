@@ -3,10 +3,10 @@ package com.datautils.table.excel.cell;
 import java.util.Objects;
 
 import com.datautils.table.function.Tuple2;
-import com.datautils.table.function.Tuples;
 
-public class Cell<T extends CellType<T>> implements CellType<Cell<T>> {
+public class Cell<T extends CellType<T>> {
 
+	//(row, column)
 	private final Tuple2<Integer, Integer> position;
 
 	private final T value;
@@ -22,16 +22,6 @@ public class Cell<T extends CellType<T>> implements CellType<Cell<T>> {
 
 	public T value() {
 		return value;
-	}
-
-	@Override
-	public Cell<T> getDefault() {
-		return new Cell<>(Tuples.of(0, 0), value.getDefault());
-	}
-
-	@Override
-	public Cell<T> copy() {
-		return new Cell<>(Tuples.of(position.t1(), position.t2()), value.copy());
 	}
 
 	@Override

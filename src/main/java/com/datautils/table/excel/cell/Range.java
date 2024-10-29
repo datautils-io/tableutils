@@ -1,4 +1,4 @@
-package com.datautils.table.excel;
+package com.datautils.table.excel.cell;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,13 +9,12 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import com.datautils.table.excel.cell.Cell;
-import com.datautils.table.excel.cell.CellType;
 import com.datautils.table.function.Tuple2;
 import com.datautils.table.function.Tuples;
 
 public class Range<T extends CellType<T>> {
 
+	// (row, column)
 	private final Tuple2<Integer, Integer> start;
 	private final Tuple2<Integer, Integer> end;
 	private final T[][] data;
