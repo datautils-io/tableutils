@@ -24,7 +24,7 @@ public class Metadata {
 		return this;
 	}
 
-	public Map<String, String> names() {
+	public Map<String, String> getNames() {
 		return names;
 	}
 

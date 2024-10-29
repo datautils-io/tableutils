@@ -3,7 +3,7 @@ package com.datautils.table.excel.reader;
 import java.util.List;
 import java.util.Optional;
 
-import com.datautils.table.excel.Range;
+import com.datautils.table.excel.cell.Range;
 import com.datautils.table.excel.enums.DataRef;
 
 public interface ReaderRef<R> extends Reader<R> {
