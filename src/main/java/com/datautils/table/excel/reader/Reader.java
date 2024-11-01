@@ -27,7 +27,7 @@ public interface Reader<R> {
 
 	default List<String> getSheetNames() {
 		return getSheetsMetadata().stream()
-				.map(Sheet::name)
+				.map(Sheet::getName)
 				.toList();
 	}
 

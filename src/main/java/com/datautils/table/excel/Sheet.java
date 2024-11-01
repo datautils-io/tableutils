@@ -15,7 +15,7 @@ public class Sheet {
 		this.visible = visible;
 	}
 
-	public String name() {
+	public String getName() {
 		return name;
 	}
 
@@ -24,7 +24,7 @@ public class Sheet {
 		return this;
 	}
 
-	public SheetType type() {
+	public SheetType getType() {
 		return type;
 	}
 
@@ -33,7 +33,7 @@ public class Sheet {
 		return this;
 	}
 
-	public SheetVisible visible() {
+	public SheetVisible getVisible() {
 		return visible;
 	}
 

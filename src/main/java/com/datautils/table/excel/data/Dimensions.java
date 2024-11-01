@@ -12,4 +12,12 @@ public class Dimensions {
 		this.start = start;
 		this.end = end;
 	}
+
+	public Tuple2<Integer, Integer> getEnd() {
+		return end;
+	}
+
+	public Tuple2<Integer, Integer> getStart() {
+		return start;
+	}
 }

@@ -15,7 +15,7 @@ public class Metadata {
 		this.names = new HashMap<>();
 	}
 
-	public List<Sheet> sheets() {
+	public List<Sheet> getSheets() {
 		return sheets;
 	}
 
