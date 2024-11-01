@@ -32,7 +32,7 @@ public class ExcelDateTime {
 		return new ExcelDateTime(value, ExcelDateTimeType.DATETIME, false);
 	}
 
-	public ExcelDateTimeType dateTimeType() {
+	public ExcelDateTimeType getDateTimeType() {
 		return dateTimeType;
 	}
 
@@ -40,7 +40,7 @@ public class ExcelDateTime {
 		return is1904;
 	}
 
-	public double value() {
+	public double getValue() {
 		return value;
 	}
 

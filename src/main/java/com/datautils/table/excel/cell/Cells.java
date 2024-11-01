@@ -19,7 +19,7 @@ public class Cells<T extends CellType<T>> implements Iterable<Cell<T>> {
 	}
 
 	public void addCell(Cell<T> cell) {
-		Tuple2<Integer, Integer> pos = cell.position();
+		Tuple2<Integer, Integer> pos = cell.getPosition();
 		if (pos.t2() >= width) {
 			throw new IllegalArgumentException("Column index exceeds the width of the cells.");
 		}

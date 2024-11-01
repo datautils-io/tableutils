@@ -1,6 +1,7 @@
 package com.datautils.table.excel.cell;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Rows<T extends CellType<T>> implements Iterable<Cell<T>> {
 	}
 
 	public List<Cell<T>> getCells(int rowIndex) {
-		return rowMap.getOrDefault(rowIndex, new ArrayList<>());
+		return rowMap.getOrDefault(rowIndex, Collections.emptyList());
 	}
 
 	public int size() {
@@ -28,30 +29,9 @@ public class Rows<T extends CellType<T>> implements Iterable<Cell<T>> {
 
 	@Override
 	public Iterator<Cell<T>> iterator() {
-		return new Iterator<Cell<T>>() {
-			private final Iterator<List<Cell<T>>> rowIterator = rowMap.values().iterator();
-			private Iterator<Cell<T>> cellIterator = rowIterator.hasNext() ? rowIterator.next().iterator() : null;
-
-			@Override
-			public boolean hasNext() {
-				while (cellIterator != null && !cellIterator.hasNext()) {
-					if (rowIterator.hasNext()) {
-						cellIterator = rowIterator.next().iterator();
-					} else {
-						cellIterator = null;
-					}
-				}
-				return cellIterator != null;
-			}
-
-			@Override
-			public Cell<T> next() {
-				if (hasNext()) {
-					return cellIterator.next();
-				}
-				throw new java.util.NoSuchElementException();
-			}
-		};
+		return rowMap.values().stream()
+				.flatMap(List::stream)
+				.iterator();
 	}
 
 	@Override

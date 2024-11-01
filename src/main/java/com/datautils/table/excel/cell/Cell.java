@@ -16,11 +16,11 @@ public class Cell<T extends CellType<T>> {
 		this.value = value;
 	}
 
-	public Tuple2<Integer, Integer> position() {
+	public Tuple2<Integer, Integer> getPosition() {
 		return position;
 	}
 
-	public T value() {
+	public T getValue() {
 		return value;
 	}
 
