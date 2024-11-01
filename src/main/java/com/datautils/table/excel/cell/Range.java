@@ -21,7 +21,6 @@ public class Range<T extends CellType<T>> {
 	private final int width;
 	private final int height;
 
-	// Cache for frequently accessed values
 	private final int startRow;
 	private final int startCol;
 	private final int endRow;
@@ -42,7 +41,6 @@ public class Range<T extends CellType<T>> {
 		this.width = endCol - startCol + 1;
 		this.height = endRow - startRow + 1;
 
-		// Optimize array creation for empty ranges
 		this.data = width <= 0 || height <= 0 ? null :
 				(T[][]) new Object[height][width];
 	}
@@ -57,16 +55,13 @@ public class Range<T extends CellType<T>> {
 		}
 	}
 
-	/**
-	 * Optimized sparse range creation
-	 */
 	public static <T extends CellType<T>> Range<T> fromSparse(Map<Tuple2<Integer, Integer>, T> sparseData) {
 		if (sparseData == null || sparseData.isEmpty()) {
 			return empty();
 		}
 
 		// Use streams for parallel processing of large datasets
-		var bounds = sparseData.keySet().parallelStream()
+		int[] bounds = sparseData.keySet().parallelStream()
 				.reduce(new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE},
 						(acc, pos) -> {
 							acc[0] = Math.min(acc[0], pos.t1()); // minCol
@@ -86,10 +81,9 @@ public class Range<T extends CellType<T>> {
 		Range<T> range = new Range<>(
 				Tuples.of(bounds[0], bounds[1]),
 				Tuples.of(bounds[2], bounds[3]),
-				false  // Skip validation as bounds are already valid
+				false
 		);
 
-		// Batch process values
 		sparseData.forEach((pos, value) -> {
 			int row = pos.t2() - range.startRow;
 			int col = pos.t1() - range.startCol;
@@ -122,7 +116,6 @@ public class Range<T extends CellType<T>> {
 		return Optional.ofNullable(data[row][col]);
 	}
 
-	// Optimized row access with array copy
 	public List<T> getRow(int rowIndex) {
 		if (rowIndex < 0 || rowIndex >= height) {
 			throw new IllegalArgumentException("Row index out of bounds");
@@ -130,7 +123,6 @@ public class Range<T extends CellType<T>> {
 		return new ArrayList<>(Arrays.asList(data[rowIndex]));
 	}
 
-	// Optimized column access with initial capacity
 	public List<T> getColumn(int colIndex) {
 		if (colIndex < 0 || colIndex >= width) {
 			throw new IllegalArgumentException("Column index out of bounds");
@@ -142,7 +134,6 @@ public class Range<T extends CellType<T>> {
 		return column;
 	}
 
-	// Efficient cell iteration
 	public Stream<Cell<T>> cellStream() {
 		if (isEmpty()) {
 			return Stream.empty();
@@ -161,7 +152,6 @@ public class Range<T extends CellType<T>> {
 				);
 	}
 
-	// Other optimized methods...
 	public boolean isEmpty() {
 		return data == null;
 	}
