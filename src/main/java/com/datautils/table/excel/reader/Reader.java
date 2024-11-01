@@ -32,7 +32,7 @@ public interface Reader<R> {
 	}
 
 	default List<Sheet> getSheetsMetadata() {
-		return getMetadata().sheets();
+		return getMetadata().getSheets();
 	}
 
 	default Map<String, String> getDefinedNames() {
@@ -42,7 +42,7 @@ public interface Reader<R> {
 	default Optional<Range<Data>> getWorksheetRangeAt(int n) throws IOException {
 		List<Sheet> sheets = getSheetsMetadata();
 		return (n >= 0 && n < sheets.size())
-				? Optional.of(getWorksheetRange(sheets.get(n).name()))
+				? Optional.of(getWorksheetRange(sheets.get(n).getName()))
 				: Optional.empty();
 	}
 }
