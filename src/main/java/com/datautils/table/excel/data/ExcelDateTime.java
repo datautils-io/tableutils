@@ -58,13 +58,6 @@ public class ExcelDateTime {
 
 	public Optional<LocalDateTime> asLocalDateTime() {
 
-//		LocalDateTime excelEpoch = LocalDateTime.of(1899, 12, 30, 0, 0, 0, 0);
-//		double f = is1904 ? value + EXCEL_1900_1904_DIFF : value;
-//		f = f >= 60.0 ? f : f + 1.0;
-//		double ms = f * MS_MULTIPLIER;
-//		Duration excelDuration = Duration.ofMillis(Math.round(ms));
-//		return Optional.of(excelEpoch.plus(excelDuration));
-
 		LocalDateTime excelEpoch = is1904 ? EXCEL_1904_EPOCH : EXCEL_1900_EPOCH;
 
 		double f = is1904 ? value + EXCEL_1900_1904_DIFF : value;
