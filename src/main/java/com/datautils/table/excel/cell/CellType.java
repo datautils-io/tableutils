@@ -8,3 +8,4 @@ public interface CellType<T extends CellType<T>> extends Cloneable {
 
 	boolean equals(Object obj);
 }
+
